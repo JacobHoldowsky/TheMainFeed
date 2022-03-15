@@ -1,6 +1,8 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from .follow import follow
+from .post import Post
 
 
 class User(db.Model, UserMixin):
@@ -15,7 +17,8 @@ class User(db.Model, UserMixin):
     profile_pic_src = db.Column(db.Text)
     
     posts = db.relationship("Post", back_populates='user')
-    comments = db.relationship("Comment", back_populates='post', cascade='all,delete')
+    comments = db.relationship("Comment", back_populates='post')
+    likes = db.relationship('Like', back_populates='user')
     
     followed = db.relationship(
         'User', secondary=follow,
@@ -44,3 +47,22 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'profile_pic_scr': self.profile_pic_src
         }
+        
+    def follow(self, user):
+        if not self.is_following(user):
+            self.followed.append(user)
+            
+    def unfollow(self, user):
+        if self.is_following(self, user):
+            self.followed.remove(user)
+    
+    def is_following(self, user):
+        return self.followed.filter(follow.c.follower_id == user.id).count() > 0
+    
+    def not_follower(self, user):
+        return self.followed.filter(follow.c.follower_id != user.id)
+    
+    def followed_posts(self):
+        followed_posts = Post.query.join(follow, (follow.c.followed_id == Post.user_id)).filter(follow.c.follower_id == self.id)
+        own_posts = Post.query.filter_by(user_id=self.id)
+        return followed_posts.union(own_posts).order_by(Post.created_at.desc())

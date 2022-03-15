@@ -1,4 +1,3 @@
-from tkinter.tix import Tree
 from .db import db
 
 follow = db.Table('follow',
