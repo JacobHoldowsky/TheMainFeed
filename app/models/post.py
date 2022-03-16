@@ -1,5 +1,5 @@
 from .db import db
-from .user import User
+# from .user import User
 
 class Post(db.Model):
     __tablename__ = 'posts'
@@ -22,8 +22,5 @@ class Post(db.Model):
             'user_id': self.user_id,
             'img_src': self.img_src,
             'text_content': self.text_content,
-            'created_at': self.created_at,
-            'poster_first_name': user.first_name,
-            'poster_last_name': user.last_name,
-            'poster_username': user.username
+            'created_at': self.created_at
         }
