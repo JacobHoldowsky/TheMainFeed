@@ -1,5 +1,5 @@
-from flask import Blueprint
-from flask_login import current_user, request, login_required
+from flask import Blueprint, request
+from flask_login import current_user, login_required
 from datetime import datetime
 from app.models import db, User, Comment
 from app.forms import CommentForm
@@ -35,10 +35,7 @@ def create_comment(post_id):
         
         db.session.add(comment)
         db.session.commit()
-        return {
-            "comment": comment.to_dict(), 
-            "user": user.to_dict()
-        }
+        return comment.to_dict()
     
 @comment_routes.route('<int:id>', methods=['DELETE'])
 def delete_comment(id):
