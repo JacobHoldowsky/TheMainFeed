@@ -17,7 +17,7 @@ def seed():
     seed_posts()
     seed_comments()
     seed_likes()
-    seed_follows()
+    # seed_follows()
     # Add other seed functions here
 
 
@@ -28,5 +28,5 @@ def undo():
     undo_posts()
     undo_comments()
     undo_likes()
-    undo_follows()
+    # undo_follows()
     # Add other undo functions here
