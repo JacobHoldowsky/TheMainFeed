@@ -1,3 +1,4 @@
+from app.models.user import User
 from .db import db
 
 class Comment(db.Model):
@@ -13,10 +14,15 @@ class Comment(db.Model):
     user = db.relationship("User", back_populates='comments')
     
     def to_dict(self):
+        user = User.query.get(self.user_id)
+        
         return {
             'id': self.id,
             'user_id': self.user_id,
             'post_id': self.post_id,
             'comment_content': self.comment_content,
-            'created_at': self.created_at
+            'created_at': self.created_at,
+            'commenter_first_name': user.first_name,
+            'commenter_last_name': user.last_name,
+            'commenter_username': user.username
         }

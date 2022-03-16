@@ -37,10 +37,7 @@ def create_post():
 
         db.session.add(post)
         db.session.commit()
-        return {
-            "post": post.to_dict(), 
-            "user": user.to_dict()
-        }
+        return post.to_dict()
         
 
 @post_routes.route('/<int:post_id>', methods=['DELETE'])
