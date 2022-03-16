@@ -76,7 +76,9 @@ export default function postsReducer(state = initialState, action) {
     switch(action.type){
         case GET_FOLLOWED_POSTS:
             newState = {...state}
-            action.followedPosts.posts.forEach(post => newState.posts[post.id] = post)
+            newState.posts = [...action.followedPosts.posts]
+            // action.followedPosts.posts.forEach(post => newState.posts[post.id] = post)
+            newState.posts.forEach(post => newState[post.id] = post)
             return newState
         case CREATE_POST:
             newState = {...state}

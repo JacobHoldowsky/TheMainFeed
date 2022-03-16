@@ -33,7 +33,7 @@ const LoginForm = () => {
   const handleDemoUser = () => {
     setEmail('demo@aa.io')
     setPassword('password')
-    return dispatch(login(email, password))
+    return dispatch(login('demo@aa.io', 'password'))
   }
 
   return (
