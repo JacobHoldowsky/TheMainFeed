@@ -15,7 +15,6 @@ class Post(db.Model):
     likes = db.relationship("Like", back_populates='post', cascade='all,delete')
     
     def to_dict(self):
-        user = User.query.get(self.user_id)
         
         return {
             'id': self.id,
