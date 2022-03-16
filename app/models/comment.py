@@ -1,5 +1,5 @@
-from app.models.user import User
 from .db import db
+from .user import User
 
 class Comment(db.Model):
     __tablename__ = 'comments'
