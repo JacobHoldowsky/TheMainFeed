@@ -17,7 +17,7 @@ class User(db.Model, UserMixin):
     profile_pic_src = db.Column(db.Text)
     
     posts = db.relationship("Post", back_populates='user')
-    comments = db.relationship("Comment", back_populates='post')
+    comments = db.relationship("Comment", back_populates='user')
     likes = db.relationship('Like', back_populates='user')
     
     followed = db.relationship(
