@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 function PostDetail() {
     const [post, setPost] = useState({})
-    const [comments, setComments] = useState({})
+    const [comments, setComments] = useState()
     const { postId } = useParams()
 
     useEffect(() => {
@@ -19,19 +19,21 @@ function PostDetail() {
         (async () => {
             const response = await fetch(`/api/comments/${postId}`)
             const comments = await response.json()
-            setComments(comments);
+            setComments(comments.comments);
         })();
     }, [postId]);
-    console.log('comments', comments)
 
     return (
         <div>
             <div>{post.first_name} {post.last_name}</div>
             <img src={post.img_src} alt="Post Detail" />
             <ul>
-                {comments.map(comment => (
-                comment.comment_content
-            ))}
+                {comments?.map(comment => (
+                    <div key={comment.id} className="comment">
+                        <li className="commenter-username">{comment.username}</li>
+                        <li className='comment-content'>{comment.comment_content}</li>
+                    </div>
+                ))}
             </ul>
         </div>
     )
