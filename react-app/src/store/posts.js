@@ -23,7 +23,7 @@ const updatePost = (updatedPost) => ({
     updatedPost
 })
 
-export const getFollowedPostsThunk = (userId) => async(dispatch) => {
+export const getFollowedPostsThunk = () => async (dispatch) => {
     const response = await fetch('/api/posts/')
 
     if (response.ok) {
@@ -32,7 +32,7 @@ export const getFollowedPostsThunk = (userId) => async(dispatch) => {
     }
 }
 
-export const newPostThunk = (newPost) => async(dispatch) => {
+export const newPostThunk = (newPost) => async (dispatch) => {
     const response = await fetch('/api/posts/', {
         method: 'POST',
         body: newPost
@@ -44,10 +44,10 @@ export const newPostThunk = (newPost) => async(dispatch) => {
     }
 }
 
-export const deletePostThunk = (postToDeleteId) => async(dispatch) => {
+export const deletePostThunk = (postToDeleteId) => async (dispatch) => {
     const response = await fetch(`/api/posts/${postToDeleteId}`, {
         method: 'DELETE',
-        headers: {'Content-Type': 'application/json'}
+        headers: { 'Content-Type': 'application/json' }
     })
 
     if (response.ok) {
@@ -56,7 +56,7 @@ export const deletePostThunk = (postToDeleteId) => async(dispatch) => {
     }
 }
 
-export const updatePostThunk = (updatedPost, postId) => async(dispatch) => {
+export const updatePostThunk = (updatedPost, postId) => async (dispatch) => {
     const response = await fetch(`/api/posts/${postId}`, {
         method: 'POST',
         body: updatedPost
@@ -69,27 +69,26 @@ export const updatePostThunk = (updatedPost, postId) => async(dispatch) => {
 }
 
 
-const initialState = {posts: {}}
+const initialState = { posts: [] }
 
 export default function postsReducer(state = initialState, action) {
     let newState;
-    switch(action.type){
+    switch (action.type) {
         case GET_FOLLOWED_POSTS:
-            newState = {...state}
+            newState = { ...state }
             newState.posts = [...action.followedPosts.posts]
-            // action.followedPosts.posts.forEach(post => newState.posts[post.id] = post)
             newState.posts.forEach(post => newState[post.id] = post)
             return newState
         case CREATE_POST:
-            newState = {...state}
+            newState = { ...state }
             newState.posts[action.CreatedPost.id] = action.CreatedPost
             return newState
         case DELETE_POST:
-            newState = {...state}
+            newState = { ...state }
             delete newState.posts[action.deletedPost.id]
             return newState
         case UPDATE_POST:
-            newState = {...state}
+            newState = { ...state }
             newState.posts[action.updatedPost.id] = action.updatedPost
             return newState
         default:

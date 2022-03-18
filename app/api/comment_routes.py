@@ -12,10 +12,8 @@ def get_all_post_comments(post_id):
     """
     Gets all comments for a post
     """
-    post_comments = Comment.query.filter(Comment.post_id==post_id).join(User, User.id == Comment.user_id).all()
-    this = {'post_comments': post_comments}
-    print(this)
-    return this
+    comments = Comment.query.filter(Comment.post_id==post_id).all()
+    return {'comments': [comment.to_dict() for comment in comments]}
 
 @comment_routes.route('/<int:post_id>', methods=['POST'])
 @login_required

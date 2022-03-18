@@ -1,25 +1,29 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getFollowedPostsThunk } from "../store/posts"
+import PostDetail from "./PostDetail"
+import { NavLink } from 'react-router-dom'
 
 const MainFeed = () => {
     const dispatch = useDispatch()
-    const user = useSelector(state => state.session.user)
-    const followedPosts = useSelector(state => state.posts.posts)   
-    const followedPostsArray = Object.values(followedPosts) 
-    console.log("followedArray",followedPostsArray)
+    const followedPosts = useSelector(state => state.posts.posts)
+
 
     useEffect(() => {
-        dispatch(getFollowedPostsThunk(user.id))
-    }, [dispatch, user])
+        dispatch(getFollowedPostsThunk())
+    }, [dispatch])
 
     return (
-            <div>
-                {followedPostsArray.map(post => (
-                    <img key={post.id} src={post.img_src} alt="" />
-                ))}
-                
-            </div>
+        <div>
+            {followedPosts.map(post => (
+                <div key={post.id}>
+                    <div>{post.first_name} {post.last_name}</div>
+                    <NavLink to={`/posts/${post.id}`}>
+                        <img src={post.img_src} alt="post" />
+                    </NavLink>
+                </div>
+            ))}
+        </div>
     )
 }
 

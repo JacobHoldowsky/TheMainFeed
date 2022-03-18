@@ -21,5 +21,8 @@ class Post(db.Model):
             'user_id': self.user_id,
             'img_src': self.img_src,
             'text_content': self.text_content,
-            'created_at': self.created_at
+            'created_at': self.created_at,
+            'username': self.user.username,
+            'first_name': self.user.first_name,
+            'last_name': self.user.last_name
         }
