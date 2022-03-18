@@ -16,6 +16,15 @@ def get_followed_posts():
     posts = current_user.followed_posts()
     return {'posts': [post.to_dict() for post in posts]}
 
+
+@post_routes.route('/<int:post_id>')
+def get_post(post_id):
+    """
+    Gets a post detail page
+    """
+    post = Post.query.get(post_id)
+    return post.to_dict()
+
 @post_routes.route('/', methods=['POST'])
 @login_required
 def create_post():
