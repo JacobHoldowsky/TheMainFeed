@@ -2,18 +2,23 @@ import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
 // import { useDispatch, useSelector } from "react-redux"
 import { useParams, useHistory, NavLink } from 'react-router-dom';
+import { getPostCommentsThunk } from "../store/comments";
 import { deletePostThunk, getFollowedPostsThunk, updatePostThunk } from "../store/posts";
+import NewCommentForm from "./NewCommentForm";
 
 function PostDetail() {
     const dispatch = useDispatch()
     const history = useHistory()
     const [post, setPost] = useState({})
-    const [comments, setComments] = useState()
+    // const [comments, setComments] = useState()
     const { postId } = useParams()
     const currentUser = useSelector(state => state.session.user)
+    const comments = useSelector(state => state.comments.comments)
+    console.log(comments)
 
     useEffect(() => {
         dispatch(getFollowedPostsThunk())
+        dispatch(getPostCommentsThunk(postId))
         if (!postId) {
             return;
         }
@@ -22,11 +27,6 @@ function PostDetail() {
             const post = await response.json()
             setPost(post);
         })();
-            (async () => {
-                const response = await fetch(`/api/comments/${postId}`)
-                const comments = await response.json()
-                setComments(comments.comments);
-            })();
     }, [postId, dispatch]);
 
     const handleDelete = async () => {
@@ -45,14 +45,6 @@ function PostDetail() {
             <div>{post.first_name} {post.last_name}</div>
             <img src={post.img_src} alt="Post Detail" />
             <p>{post.text_content}</p>
-            <ul>
-                {comments?.map(comment => (
-                    <div key={comment.id} className="comment">
-                        <li className="commenter-username">{comment.username}</li>
-                        <li className='comment-content'>{comment.comment_content}</li>
-                    </div>
-                ))}
-            </ul>
             {
                 post.user_id === currentUser.id &&
                 <div>
@@ -65,6 +57,15 @@ function PostDetail() {
                     </button> */}
                 </div>
             }
+            <ul>
+                {comments?.map(comment => (
+                    <div key={comment.id} className="comment">
+                        <li className="commenter-username">{comment.username}</li>
+                        <li className='comment-content'>{comment.comment_content}</li>
+                    </div>
+                ))}
+            </ul>
+            <NewCommentForm />
         </div>
     )
 

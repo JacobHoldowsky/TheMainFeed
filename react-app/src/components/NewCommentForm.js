@@ -1,34 +1,32 @@
 import React, { useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { getFollowedPostsThunk, newPostThunk } from "../store/posts"
-import { useHistory } from 'react-router-dom'
+import { useDispatch } from "react-redux"
+import { useParams } from 'react-router-dom'
+import { getPostCommentsThunk, newCommentThunk } from "../store/comments"
 
-const NewPostForm = () => {
+const NewCommentForm = () => {
     const dispatch = useDispatch()
-    const history = useHistory()
     const [errors, setErrors] = useState([])
-    const [img_src, setImgSrc] = useState('')
     const [comment_content, setCommentContent] = useState('')
+    const { postId } = useParams()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        // const formData = new FormData()
 
-        const post = {
+        const newComment = {
             comment_content
         }
 
-        const data = await dispatch(NewC)
+        const data = await dispatch(newCommentThunk(newComment, postId))
         console.log('data', data)
         if (data) {
-            await dispatch(getFollowedPostsThunk())
+            await dispatch(getPostCommentsThunk(postId))
 
         } else {
-            const data = await post.json()
+            const data = await newComment.json()
             setErrors([data.errors])
         }
 
-        history.push(`/posts/${data.CreatedPost.id}`)
+        setCommentContent('')
 
     }
 
@@ -41,15 +39,15 @@ const NewPostForm = () => {
                         <div key={i}>{error}</div>
                     ))}
                 </div>
-                <div>Post a comment</div>
+                <div>Post a comment!</div>
                 <div>
                     <input
                         type='textarea'
                         className='comment-content-field'
                         name='comment_contentf'
-                        onChange={(e) => setImgSrc(e.target.value)}
-                        value={comment_contentf}
-                        placeholder='Image URL'
+                        onChange={(e) => setCommentContent(e.target.value)}
+                        value={comment_content}
+                        placeholder='Comment'
                     ></input>
                 </div>
                 <button className='comment-submit-button' type='submit'>Submit</button>
@@ -58,4 +56,4 @@ const NewPostForm = () => {
     )
 }
 
-export default NewPostForm;
+export default NewCommentForm;
