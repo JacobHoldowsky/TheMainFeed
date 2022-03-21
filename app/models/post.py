@@ -10,7 +10,7 @@ class Post(db.Model):
     text_content = (db.Column(db.Text))
     created_at = db.Column(db.DateTime)
     
-    user = db.relationship("User", back_populates='posts', cascade='all,delete')
+    user = db.relationship("User", back_populates='posts')
     comments = db.relationship("Comment", back_populates='post', cascade='all,delete')
     likes = db.relationship("Like", back_populates='post', cascade='all,delete')
     
