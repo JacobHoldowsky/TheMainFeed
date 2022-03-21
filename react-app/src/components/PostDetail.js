@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
 // import { useDispatch, useSelector } from "react-redux"
-import { useParams, useHistory } from 'react-router-dom';
-import { deletePostThunk, getFollowedPostsThunk } from "../store/posts";
+import { useParams, useHistory, NavLink } from 'react-router-dom';
+import { deletePostThunk, getFollowedPostsThunk, updatePostThunk } from "../store/posts";
 
 function PostDetail() {
     const dispatch = useDispatch()
@@ -13,6 +13,7 @@ function PostDetail() {
     const currentUser = useSelector(state => state.session.user)
 
     useEffect(() => {
+        dispatch(getFollowedPostsThunk())
         if (!postId) {
             return;
         }
@@ -26,24 +27,24 @@ function PostDetail() {
                 const comments = await response.json()
                 setComments(comments.comments);
             })();
-    }, [postId]);
+    }, [postId, dispatch]);
 
     const handleDelete = async () => {
         await dispatch(deletePostThunk(postId))
+        // await dispatch(getFollowedPostsThunk())
         history.push('/')
     }
 
     const handleEdit = async () => {
-        await fetch(`/api/posts/${post.id}`, {
-            method: 'DELETE',
-            headers: { 'Content-Type': 'application/json' }
-        })
+        await dispatch(updatePostThunk())
+        history.push()
     }
 
     return (
         <div>
             <div>{post.first_name} {post.last_name}</div>
             <img src={post.img_src} alt="Post Detail" />
+            <p>{post.text_content}</p>
             <ul>
                 {comments?.map(comment => (
                     <div key={comment.id} className="comment">
@@ -58,6 +59,7 @@ function PostDetail() {
                     <button onClick={handleDelete}>
                         Delete
                     </button>
+                    <NavLink to={`/posts/${post.id}/edit`}><button>Edit</button></NavLink>
                     {/* <button onClick={() => handleEdit}>
                         Edit
                     </button> */}
