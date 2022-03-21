@@ -12,7 +12,7 @@ const createComment = (createdComment) => ({
     type: CREATE_COMMENT,
     createdComment
 })
-post
+
 const deleteComment = (deletedComment) => ({
     type: DELETE_COMMENT,
     deletedComment
@@ -88,7 +88,7 @@ export default function commentsReducer(state = initialState, action) {
             return newState
         case CREATE_COMMENT:
             newState = { ...state }
-            newState.comments[action.CreatedComment.id] = action.CreatedComment
+            newState.comments[action.createdComment.id] = action.CreatedComment
             return newState
         case DELETE_COMMENT:
             newState = { ...state }
