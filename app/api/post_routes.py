@@ -1,3 +1,4 @@
+from asyncio.proactor_events import constants
 from datetime import datetime
 from xml.etree.ElementTree import Comment
 from app.forms.post_form import PostForm
@@ -46,6 +47,20 @@ def create_post():
         db.session.commit()
         return post.to_dict()
         
+@post_routes.route('/<int:post_id>', methods=['POST'])
+def update_post(post_id):
+    """
+    Updates a post
+    """
+    form = PostForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    post = Post.query.get(post_id)
+    
+    post.img_src = form.data['img_src']
+    post.text_content = form.data['text_content']
+    
+    db.session.commit()
+    return post.to_dict()
 
 @post_routes.route('/<int:post_id>', methods=['DELETE'])
 @login_required
@@ -59,18 +74,4 @@ def delete_post(post_id):
     
     return post.to_dict()
 
-@post_routes.route('/<int:post_id>', methods=['POST'])
-def update_post(post_id):
-    """
-    Updates a post
-    """
-    form = PostForm()
-    
-    form['csrf_token'].data = request.cookies['csrf_token']
-    post = Post.query.get(post_id)
-    post.img_src = form.img_src
-    post.text_content = form.text_content
-    
-    db.session.commit()
-    return post.to_dict()
 

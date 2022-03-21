@@ -48,6 +48,20 @@ export const newPostThunk = (newPost) => async (dispatch) => {
     }
 }
 
+export const updatePostThunk = (updatedPost, postId) => async (dispatch) => {
+    const response = await fetch(`/api/posts/${postId}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedPost)
+    })
+
+    if (response.ok) {
+        const updatedPost = await response.json();
+        dispatch(updatePost(updatedPost));
+        return updatedPost
+    }
+}
+
 export const deletePostThunk = (postToDeleteId) => async (dispatch) => {
     const response = await fetch(`/api/posts/${postToDeleteId}`, {
         method: 'DELETE',
@@ -60,17 +74,6 @@ export const deletePostThunk = (postToDeleteId) => async (dispatch) => {
     }
 }
 
-export const updatePostThunk = (updatedPost, postId) => async (dispatch) => {
-    const response = await fetch(`/api/posts/${postId}`, {
-        method: 'POST',
-        body: updatedPost
-    })
-
-    if (response.ok) {
-        const updatedPost = await response.json();
-        dispatch(updatePost(updatedPost));
-    }
-}
 
 
 const initialState = { posts: [] }

@@ -1,14 +1,16 @@
 import React, { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getFollowedPostsThunk, newPostThunk } from "../store/posts"
-import {useHistory } from 'react-router-dom'
+import { getFollowedPostsThunk, newPostThunk, updatePostThunk } from "../store/posts"
+import { useHistory, useParams } from 'react-router-dom'
 
 const NewPostForm = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const [errors, setErrors] = useState([])
-    const [img_src, setImgSrc] = useState('')
-    const [text_content, setTextContent] = useState('')
+    const { postId } = useParams()
+    const post = useSelector(state => state.posts[postId])
+    const [img_src, setImgSrc] = useState(post.img_src)
+    const [text_content, setTextContent] = useState(post.text_content)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -19,17 +21,17 @@ const NewPostForm = () => {
             text_content
         }
 
-        const data = await dispatch(newPostThunk(post))
-        console.log('data',data)
+        const data = await dispatch(updatePostThunk(post, postId))
+        console.log('data', data)
         if (data) {
             await dispatch(getFollowedPostsThunk())
-            
+
         } else {
             const data = await post.json()
             setErrors([data.errors])
         }
 
-        history.push(`/posts/${data.CreatedPost.id}`)
+        history.push(`/posts/${data.id}`)
 
     }
 
@@ -50,7 +52,7 @@ const NewPostForm = () => {
                         name='img_src'
                         onChange={(e) => setImgSrc(e.target.value)}
                         value={img_src}
-                        placeholder='Image URL'
+                        placeholder={post.img_src}
                     ></input>
                 </div>
                 <div>
@@ -60,7 +62,7 @@ const NewPostForm = () => {
                         className='text-content-field'
                         onChange={(e) => setTextContent(e.target.value)}
                         value={text_content}
-                        placeholder='What do you think?'
+                        placeholder={post.text_content}
                     ></input>
                 </div>
                 <button className='post-submit-button' type='submit'>Post</button>
