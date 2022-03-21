@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getFollowedPostsThunk, newPostThunk, updatePostThunk } from "../store/posts"
+import { getFollowedPostsThunk, updatePostThunk } from "../store/posts"
 import { useHistory, useParams } from 'react-router-dom'
 
 const NewPostForm = () => {
@@ -22,7 +22,7 @@ const NewPostForm = () => {
         }
 
         const data = await dispatch(updatePostThunk(post, postId))
-        console.log('data', data)
+
         if (data) {
             await dispatch(getFollowedPostsThunk())
 
