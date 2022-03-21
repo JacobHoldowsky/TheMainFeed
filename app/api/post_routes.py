@@ -37,12 +37,10 @@ def create_post():
     if form.validate_on_submit():
         post = Post(
             user_id=current_user.id,
-            img_src=request.form['img_src'],
-            text_content=request.form['text_content'],
+            img_src=form.data['img_src'],
+            text_content=form.data['text_content'],
             created_at=datetime.now()
         )
-        
-        user = User.query.get(current_user.id)
 
         db.session.add(post)
         db.session.commit()

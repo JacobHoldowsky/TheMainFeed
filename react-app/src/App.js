@@ -10,6 +10,7 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import MainFeed from './components/MainFeed';
 import PostDetail from './components/PostDetail';
+import NewPostForm from './components/NewPostForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -41,6 +42,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
+        </ProtectedRoute>
+        <ProtectedRoute path='/posts/new' exact={true} >
+          <NewPostForm />
         </ProtectedRoute>
         <ProtectedRoute path='/posts/:postId' exact={true} >
           <PostDetail />

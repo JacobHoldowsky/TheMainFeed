@@ -13,6 +13,7 @@ function PostDetail() {
     const currentUser = useSelector(state => state.session.user)
 
     useEffect(() => {
+        dispatch(getFollowedPostsThunk())
         if (!postId) {
             return;
         }
@@ -30,6 +31,7 @@ function PostDetail() {
 
     const handleDelete = async () => {
         await dispatch(deletePostThunk(postId))
+        // await dispatch(getFollowedPostsThunk())
         history.push('/')
     }
 
@@ -44,6 +46,7 @@ function PostDetail() {
         <div>
             <div>{post.first_name} {post.last_name}</div>
             <img src={post.img_src} alt="Post Detail" />
+            <p>{post.text_content}</p>
             <ul>
                 {comments?.map(comment => (
                     <div key={comment.id} className="comment">

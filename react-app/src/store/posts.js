@@ -35,12 +35,16 @@ export const getFollowedPostsThunk = () => async (dispatch) => {
 export const newPostThunk = (newPost) => async (dispatch) => {
     const response = await fetch('/api/posts/', {
         method: 'POST',
-        body: newPost
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(newPost)
     })
 
+    console.log(response)
+
     if (response.ok) {
-        const CreatedPost = await response.json()
-        dispatch(CreatePost(CreatedPost))
+        const createdPost = await response.json()
+        const post = await dispatch(CreatePost(createdPost))
+        return post
     }
 }
 
@@ -52,7 +56,7 @@ export const deletePostThunk = (postToDeleteId) => async (dispatch) => {
 
     if (response.ok) {
         const deletedPost = await response.json()
-        dispatch(deletePost(deletedPost))
+        await dispatch(deletePost(deletedPost))
     }
 }
 
@@ -71,7 +75,7 @@ export const updatePostThunk = (updatedPost, postId) => async (dispatch) => {
 
 const initialState = { posts: [] }
 
-export default function postsReducer(state = initialState, action) {
+export default function postsReducer (state = initialState, action) {
     let newState;
     switch (action.type) {
         case GET_FOLLOWED_POSTS:
@@ -85,11 +89,11 @@ export default function postsReducer(state = initialState, action) {
             return newState
         case DELETE_POST:
             newState = { ...state }
-            delete newState.posts[action.deletedPost.id]
+            delete newState[action.deletedPost.id]
             return newState
         case UPDATE_POST:
             newState = { ...state }
-            newState.posts[action.updatedPost.id] = action.updatedPost
+            newState[action.updatedPost.id] = action.updatedPost
             return newState
         default:
             return state
