@@ -2,8 +2,9 @@ import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
 // import { useDispatch, useSelector } from "react-redux"
 import { useParams, useHistory, NavLink } from 'react-router-dom';
-import { getPostCommentsThunk } from "../store/comments";
+import { deleteCommentThunk, getPostCommentsThunk } from "../store/comments";
 import { deletePostThunk, getFollowedPostsThunk, updatePostThunk } from "../store/posts";
+import EditCommentModal from "./EditCommentModal/EditCommentModal";
 import NewCommentForm from "./NewCommentForm";
 
 function PostDetail() {
@@ -14,7 +15,6 @@ function PostDetail() {
     const { postId } = useParams()
     const currentUser = useSelector(state => state.session.user)
     const comments = useSelector(state => state.comments.comments)
-    console.log(comments)
 
     useEffect(() => {
         dispatch(getFollowedPostsThunk())
@@ -29,15 +29,13 @@ function PostDetail() {
         })();
     }, [postId, dispatch]);
 
-    const handleDelete = async () => {
-        await dispatch(deletePostThunk(postId))
-        // await dispatch(getFollowedPostsThunk())
-        history.push('/')
-    }
+    const handleDeleteComment = async (commentId) => {
+        await dispatch(deleteCommentThunk(commentId))
+        await dispatch(getPostCommentsThunk(postId))
+    }  
 
-    const handleEdit = async () => {
-        await dispatch(updatePostThunk())
-        history.push()
+    const handleEditComment = async (commentId) => {
+        
     }
 
     return (
@@ -48,20 +46,19 @@ function PostDetail() {
             {
                 post.user_id === currentUser.id &&
                 <div>
-                    <button onClick={handleDelete}>
-                        Delete
-                    </button>
+                    <NavLink to={`/posts/${post.id}/delete`}><button>Delete</button></NavLink>
                     <NavLink to={`/posts/${post.id}/edit`}><button>Edit</button></NavLink>
-                    {/* <button onClick={() => handleEdit}>
-                        Edit
-                    </button> */}
                 </div>
             }
             <ul>
                 {comments?.map(comment => (
                     <div key={comment.id} className="comment">
-                        <li className="commenter-username">{comment.username}</li>
-                        <li className='comment-content'>{comment.comment_content}</li>
+                        <ul>   
+                            <li className="commenter-username">{comment.username}</li>
+                            <li className='comment-content'>{comment.comment_content}</li>
+                        </ul>
+                        <button onClick={() => handleDeleteComment(comment.id)}>Delete</button>
+                        <EditCommentModal comment={comment} />
                     </div>
                 ))}
             </ul>
