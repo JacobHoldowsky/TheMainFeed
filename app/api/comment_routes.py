@@ -12,7 +12,7 @@ def get_all_post_comments(post_id):
     """
     Gets all comments for a post
     """
-    comments = Comment.query.filter(Comment.post_id==post_id).all()
+    comments = Comment.query.filter(Comment.post_id==post_id).order_by(Comment.created_at.desc()).all()
     return {'comments': [comment.to_dict() for comment in comments]}
 
 @comment_routes.route('/<int:post_id>', methods=['POST'])
@@ -36,7 +36,7 @@ def create_comment(post_id):
         db.session.commit()
         return comment.to_dict()
     
-@comment_routes.route('/<int:comment_id>', methods=['POST'])
+@comment_routes.route('/<int:comment_id>/edit', methods=['POST'])
 def update_comment(comment_id):
     """
     Updates a comment
@@ -45,7 +45,9 @@ def update_comment(comment_id):
     form['csrf_token'].data = request.cookies['csrf_token']
     comment = Comment.query.get(comment_id)
     
-    comment.comment_content = form.data['text_content']
+    print('COMMENT',comment)
+    print('FORM.DATA',form.data)
+    comment.comment_content = form.data['comment_content']
 
     db.session.commit()
     return comment.to_dict()

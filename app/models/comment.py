@@ -11,7 +11,7 @@ class Comment(db.Model):
     created_at = db.Column(db.Text, nullable=False)
 
     post = db.relationship("Post", back_populates='comments')
-    user = db.relationship("User", back_populates='comments')
+    user = db.relationship("User", back_populates='comments', lazy='subquery')
     
     def to_dict(self):
         

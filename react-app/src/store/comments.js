@@ -49,7 +49,8 @@ export const newCommentThunk = (newComment, postId) => async (dispatch) => {
 }
 
 export const updateCommentThunk = (updatedComment, commentId) => async (dispatch) => {
-    const response = await fetch(`/api/comments/${commentId}`, {
+    console.log('COMMENTID',commentId)
+    const response = await fetch(`/api/comments/${commentId}/edit`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedComment)
@@ -88,7 +89,7 @@ export default function commentsReducer(state = initialState, action) {
             return newState
         case CREATE_COMMENT:
             newState = { ...state }
-            newState.comments[action.createdComment.id] = action.CreatedComment
+            newState.comments[action.createdComment.id] = action.createdComment
             return newState
         case DELETE_COMMENT:
             newState = { ...state }

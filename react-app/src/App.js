@@ -12,6 +12,7 @@ import MainFeed from './components/MainFeed';
 import PostDetail from './components/PostDetail';
 import NewPostForm from './components/NewPostForm';
 import EditPostForm from './components/EditPostForm'
+import ConfirmDeleteForm from './components/ConfirmDeleteForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -52,6 +53,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/posts/:postId/edit' exact={true} >
           <EditPostForm />
+        </ProtectedRoute>
+        <ProtectedRoute path='/posts/:postId/delete' exact={true} >
+          <ConfirmDeleteForm />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
