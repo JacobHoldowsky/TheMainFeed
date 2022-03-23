@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getFollowedPostsThunk } from "../store/posts"
 import { NavLink } from 'react-router-dom'
+import './MainFeed.css';
 
 const MainFeed = () => {
     const dispatch = useDispatch()
@@ -13,15 +14,16 @@ const MainFeed = () => {
     }, [dispatch])
 
     return (
-        <div>
+        <div className='main-feed-posts-container'>
             {followedPosts.map(post => (
-                <div key={post.id}>
-                    <NavLink to={`/users/${post.user_id}`}>
-                        <div>{post.username}</div>
+                <div key={post.id} className='main-feed-post-div'>
+                    <NavLink to={`/users/${post.user_id}`} className='main-feed-post-username'>
+                        {post.username}
                     </NavLink>
                     <NavLink to={`/posts/${post.id}`}>
-                        <img src={post.img_src} alt="post" />
+                        <img className='main-feed-post-img' src={post.img_src} alt="post" />
                     </NavLink>
+                    <p className='post-caption'>{post.text_content}</p>
                 </div>
             ))}
         </div>

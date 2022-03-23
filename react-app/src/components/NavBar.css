@@ -1,0 +1,38 @@
+.logged-in-nav {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+}
+
+.logged-out-nav {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    padding: 0;
+}
+
+.NavButton {
+    text-decoration: none;
+    color: black;
+    font-size: larger;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.NavButton:hover {
+    text-decoration: none;
+    border-bottom: 1px solid black;
+}
+
+.Icon{
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.Icon:hover{
+    border-bottom: none
+}
+
+.NavBar {
+    margin-bottom: 3vh;
+}
