@@ -1,0 +1,27 @@
+.main-feed-posts-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-feed-post-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+    gap: 2vh;
+}
+
+.main-feed-post-username{
+    font-size: larger;
+    text-decoration: none;
+    border-bottom: none;
+    color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.main-feed-post-img{
+    width: 40vw;
+    height: 60vh;
+    border-radius: 25px;
+}

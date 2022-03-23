@@ -19,7 +19,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -40,7 +40,7 @@ function App() {
           <SignUpForm />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+          <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
@@ -58,7 +58,10 @@ function App() {
           <ConfirmDeleteForm />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
+          <div className='main-feed-greeting'>
+            <h1 className='main-feedh1'>The Main Feed</h1>
+            <h2 className='main-feed-h2'>The place to be connected</h2>
+          </div>
           <MainFeed />
         </ProtectedRoute>
       </Switch>
