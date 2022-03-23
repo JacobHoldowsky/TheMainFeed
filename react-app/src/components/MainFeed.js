@@ -17,13 +17,13 @@ const MainFeed = () => {
         <div className='main-feed-posts-container'>
             {followedPosts.map(post => (
                 <div key={post.id} className='main-feed-post-div'>
-                    <NavLink to={`/users/${post.user_id}`}>
-                        <div className='main-feed-post-username'>{post.username}</div>
+                    <NavLink to={`/users/${post.user_id}`} className='main-feed-post-username'>
+                        {post.username}
                     </NavLink>
                     <NavLink to={`/posts/${post.id}`}>
                         <img className='main-feed-post-img' src={post.img_src} alt="post" />
                     </NavLink>
-                    <p>{post.text_content}</p>
+                    <p className='post-caption'>{post.text_content}</p>
                 </div>
             ))}
         </div>

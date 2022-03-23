@@ -13,15 +13,23 @@
 }
 
 .main-feed-post-username{
-    font-size: larger;
-    text-decoration: none;
-    border-bottom: none;
+    font-size: x-large;
     color: black;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-decoration: none;
+}
+
+.main-feed-post-username:hover { 
+    text-decoration: none; 
+    border-bottom: 1px solid black; 
 }
 
 .main-feed-post-img{
     width: 40vw;
     height: 60vh;
     border-radius: 25px;
+}
+
+.post-caption{
+    font-size: large;
 }
