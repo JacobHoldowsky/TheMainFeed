@@ -1,4 +1,5 @@
 const GET_FOLLOWED_POSTS = 'posts/GET_FOLLOWED_POSTS'
+const GET_USER_POSTS = 'posts/GET_USER_POSTS'
 const CREATE_POST = 'posts/CREATE_POST'
 const DELETE_POST = 'posts/DELETE_POST'
 const UPDATE_POST = 'posts/UPDATE_POST'
@@ -8,9 +9,14 @@ const getFollowedPosts = (followedPosts) => ({
     followedPosts
 })
 
-const CreatePost = (CreatedPost) => ({
+const getUserPosts = (userPosts) => ({
+    type: GET_USER_POSTS,
+    userPosts
+})
+
+const CreatePost = (createdPost) => ({
     type: CREATE_POST,
-    CreatedPost
+    createdPost
 })
 
 const deletePost = (deletedPost) => ({
@@ -29,6 +35,15 @@ export const getFollowedPostsThunk = () => async (dispatch) => {
     if (response.ok) {
         const followedPosts = await response.json();
         dispatch(getFollowedPosts(followedPosts))
+    }
+}
+
+export const getUserPostsThunk = (userId) => async (dispatch) => {
+    const response = await fetch(`/api/users/${userId}/posts`)
+
+    if (response.ok) {
+        const userPosts = await response.json();
+        dispatch(getUserPosts(userPosts))
     }
 }
 
@@ -76,7 +91,7 @@ export const deletePostThunk = (postToDeleteId) => async (dispatch) => {
 
 
 
-const initialState = { posts: [] }
+const initialState = { posts: [], userPosts: [] }
 
 export default function postsReducer (state = initialState, action) {
     let newState;
@@ -86,9 +101,14 @@ export default function postsReducer (state = initialState, action) {
             newState.posts = [...action.followedPosts.posts]
             newState.posts.forEach(post => newState[post.id] = post)
             return newState
+        case GET_USER_POSTS:
+            newState = {...state}
+            newState.userPosts = [...action.userPosts.user_posts]
+            newState.userPosts.forEach(post => newState[post.id] = post)
+            return newState
         case CREATE_POST:
             newState = { ...state }
-            newState.posts[action.CreatedPost.id] = action.CreatedPost
+            newState.posts[action.createdPost.id] = action.createdPost
             return newState
         case DELETE_POST:
             newState = { ...state }

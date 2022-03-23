@@ -1,13 +1,12 @@
-import React, { useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { deletePostThunk, getFollowedPostsThunk, updatePostThunk } from "../store/posts"
+import React from "react"
+import { useDispatch } from "react-redux"
+import { deletePostThunk } from "../store/posts"
 import { useHistory, useParams } from 'react-router-dom'
 
 const ConfirmDeleteForm = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const { postId } = useParams()
-    const post = useSelector(state => state.posts[postId])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
