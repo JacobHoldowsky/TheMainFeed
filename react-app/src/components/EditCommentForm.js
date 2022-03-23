@@ -1,12 +1,10 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getPostCommentsThunk, updateCommentThunk } from "../store/comments";
 // import './editCommentForm.css'
 
 export default function UpdateCommentForm({ commentInfo, setShowModal }) {
     const dispatch = useDispatch();
-
-    const user = useSelector((state) => state.session.user);
 
     const [newCommentEdit, setNewCommentEdit] = useState(commentInfo.comment_content);
     const handleNewComment = (e) => setNewCommentEdit(e.target.value);

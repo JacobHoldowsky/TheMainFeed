@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
 // import { useDispatch, useSelector } from "react-redux"
-import { useParams, useHistory, NavLink } from 'react-router-dom';
+import { useParams, NavLink } from 'react-router-dom';
 import { deleteCommentThunk, getPostCommentsThunk } from "../store/comments";
-import { deletePostThunk, getFollowedPostsThunk, updatePostThunk } from "../store/posts";
+import { getFollowedPostsThunk } from "../store/posts";
 import EditCommentModal from "./EditCommentModal/EditCommentModal";
 import NewCommentForm from "./NewCommentForm";
 
 function PostDetail() {
     const dispatch = useDispatch()
-    const history = useHistory()
     const [post, setPost] = useState({})
     // const [comments, setComments] = useState()
     const { postId } = useParams()
@@ -34,13 +33,15 @@ function PostDetail() {
         await dispatch(getPostCommentsThunk(postId))
     }  
 
-    const handleEditComment = async (commentId) => {
+    // const handleEditComment = async (commentId) => {
         
-    }
+    // }
 
     return (
         <div>
-            <div>{post.first_name} {post.last_name}</div>
+            <NavLink to={`/users/${post.user_id}`}>
+                <div>{post.username}</div>
+            </NavLink>
             <img src={post.img_src} alt="Post Detail" />
             <p>{post.text_content}</p>
             {
@@ -57,8 +58,13 @@ function PostDetail() {
                             <li className="commenter-username">{comment.username}</li>
                             <li className='comment-content'>{comment.comment_content}</li>
                         </ul>
-                        <button onClick={() => handleDeleteComment(comment.id)}>Delete</button>
-                        <EditCommentModal comment={comment} />
+                        {
+                            comment.user_id === currentUser.id &&
+                            <div>
+                                <button onClick={() => handleDeleteComment(comment.id)}>Delete</button>
+                                <EditCommentModal comment={comment} />
+                            </div>
+                        }
                     </div>
                 ))}
             </ul>

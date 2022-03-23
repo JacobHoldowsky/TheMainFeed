@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { getFollowedPostsThunk, newPostThunk } from "../store/posts"
 import {useHistory } from 'react-router-dom'
 
@@ -29,7 +29,7 @@ const NewPostForm = () => {
             setErrors([data.errors])
         }
 
-        history.push(`/posts/${data.CreatedPost.id}`)
+        history.push(`/posts/${data.createdPost.id}`)
 
     }
 

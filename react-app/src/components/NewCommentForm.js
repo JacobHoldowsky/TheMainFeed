@@ -41,14 +41,14 @@ const NewCommentForm = () => {
                 </div>
                 <div>Post a comment!</div>
                 <div>
-                    <input
+                    <textarea
                         type='textarea'
                         className='comment-content-field'
                         name='comment_contentf'
                         onChange={(e) => setCommentContent(e.target.value)}
                         value={comment_content}
                         placeholder='Comment'
-                    ></input>
+                    ></textarea>
                 </div>
                 <button className='comment-submit-button' type='submit'>Submit</button>
             </form>
