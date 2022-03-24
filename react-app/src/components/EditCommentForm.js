@@ -31,7 +31,7 @@ export default function UpdateCommentForm({ commentInfo, setShowModal }) {
                     className='edit-comment-box'
                     value={newCommentEdit}
                     onChange={handleNewComment}
-                    required
+                    required={true}
                 />
                 <button className="updateCommentFormButton" type="submit">Update</button>
             </form>

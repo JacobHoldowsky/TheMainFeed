@@ -31,10 +31,11 @@ const LoginForm = () => {
     return <Redirect to='/' />;
   }
 
-  const handleDemoUser = () => {
+  const handleDemoUser = async (e) => {
+    e.preventDefault()
     setEmail('demo@aa.io')
     setPassword('password')
-    return dispatch(login('demo@aa.io', 'Password!1'))
+    await dispatch(login('demo@aa.io', 'Password!1'))
   }
 
   return (
