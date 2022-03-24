@@ -34,7 +34,7 @@ const LoginForm = () => {
   const handleDemoUser = async (e) => {
     e.preventDefault()
     setEmail('demo@aa.io')
-    setPassword('password')
+    setPassword('Password!1')
     await dispatch(login('demo@aa.io', 'Password!1'))
   }
 
