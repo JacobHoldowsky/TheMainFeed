@@ -15,6 +15,8 @@ const MainFeed = () => {
 
     return (
         <div className='main-feed-posts-container'>
+            {!followedPosts &&
+                <h2>Follow a user and see their posts show up here!</h2>}
             {followedPosts.map(post => (
                 <div key={post.id} className='main-feed-post-div'>
                     <NavLink to={`/users/${post.user_id}`} className='main-feed-post-username'>
