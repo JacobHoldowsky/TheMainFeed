@@ -41,6 +41,10 @@ function App() {
           <LoginForm />
         </Route>
         <Route path='/sign-up' exact={true}>
+          <div className='signup-greeting'>
+            <h1 className='signup-h1'>The Main Feed</h1>
+            <h2>Welcome!</h2>
+          </div>
           <SignUpForm />
         </Route>
         <ProtectedRoute path='/users' exact={true} >

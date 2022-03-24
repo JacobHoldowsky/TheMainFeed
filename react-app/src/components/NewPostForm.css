@@ -1,20 +1,21 @@
-.signup-form-container {
+.new-post-form-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 55vh;
+    height: 30vh;
     width: 100vw;
 }
 
-.signup-form {
+.new-post-form {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
     font-family: 'Times New Roman', Times, serif;
     padding: 3vh;
-    width: 220px;
+    width: 150px;
+    height: 130px;
     border: black 2px solid;
     border-radius: 10px;
 }
@@ -24,6 +25,5 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 10px;
 }
-
-

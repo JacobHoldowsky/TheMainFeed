@@ -7,7 +7,7 @@ import './MainFeed.css';
 const MainFeed = () => {
     const dispatch = useDispatch()
     const followedPosts = useSelector(state => state.posts.posts)
-
+    console.log(followedPosts)
 
     useEffect(() => {
         dispatch(getFollowedPostsThunk())
@@ -15,7 +15,7 @@ const MainFeed = () => {
 
     return (
         <div className='main-feed-posts-container'>
-            {!followedPosts &&
+            {followedPosts.length === 0 &&
                 <h2>Follow a user and see their posts show up here!</h2>}
             {followedPosts.map(post => (
                 <div key={post.id} className='main-feed-post-div'>
