@@ -1,0 +1,34 @@
+.form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 30vh;
+    width: 100vw;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    font-family:'Times New Roman', Times, serif;
+    padding: 3vh;
+    max-width: 200px;
+    border: black 2px solid;
+    border-radius: 10px;
+}
+
+.form-field{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-buttons{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 90px
+
+}

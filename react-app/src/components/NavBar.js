@@ -34,7 +34,7 @@ const NavBar = () => {
     )
   } else {
     return (
-      <nav >
+      <nav className='NavBar'>
         <ul className='logged-out-nav'>
           <li>
             <NavLink to='/login' exact={true} activeClassName='active' className='NavButton'>

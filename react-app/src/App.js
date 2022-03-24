@@ -34,6 +34,10 @@ function App() {
       <NavBar />
       <Switch>
         <Route path='/login' exact={true}>
+          <div className='login-greeting'>
+            <h1 className='login-h1'>The Main Feed</h1>
+            <h2>Welcome Back!</h2>
+          </div>
           <LoginForm />
         </Route>
         <Route path='/sign-up' exact={true}>
@@ -59,7 +63,7 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <div className='main-feed-greeting'>
-            <h1 className='main-feedh1'>The Main Feed</h1>
+            <h1 className='main-feed-h1'>The Main Feed</h1>
             <h2 className='main-feed-h2'>The place to be connected</h2>
           </div>
           <MainFeed />
