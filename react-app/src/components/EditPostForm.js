@@ -1,9 +1,9 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getFollowedPostsThunk, updatePostThunk } from "../store/posts"
+import { getFollowedPostsThunk, getUserPostsThunk, updatePostThunk } from "../store/posts"
 import { useHistory, useParams } from 'react-router-dom'
 
-const NewPostForm = () => {
+const EditPostForm = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const [errors, setErrors] = useState([])
@@ -11,7 +11,13 @@ const NewPostForm = () => {
     const post = useSelector(state => state.posts[postId])
     const [img_src, setImgSrc] = useState(post.img_src)
     const [text_content, setTextContent] = useState(post.text_content)
-
+    
+    useEffect(() => {
+        dispatch(getFollowedPostsThunk())
+    }, [dispatch]);
+    
+    console.log('post', post)
+    
     const handleSubmit = async (e) => {
         e.preventDefault()
         // const formData = new FormData()
@@ -53,6 +59,7 @@ const NewPostForm = () => {
                         onChange={(e) => setImgSrc(e.target.value)}
                         value={img_src}
                         placeholder={post.img_src}
+                        required={true}
                     ></input>
                 </div>
                 <div>
@@ -71,4 +78,4 @@ const NewPostForm = () => {
     )
 }
 
-export default NewPostForm;
+export default EditPostForm;

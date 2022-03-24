@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserPostsThunk } from '../store/posts';
-import { followThunk, unfollowThunk } from '../store/follows';
+import { followThunk, getUserFollowedsThunk, unfollowThunk } from '../store/follows';
 
 function User() {
   const [user, setUser] = useState({});
@@ -17,6 +17,7 @@ function User() {
 
   useEffect(() => {
     dispatch(getUserPostsThunk(userId))
+    dispatch(getUserFollowedsThunk(currentUser.id))
     if (!userId) {
       return;
     }
@@ -26,7 +27,7 @@ function User() {
       setUser(user);
     })();
     
-  }, [userId, dispatch]);
+  }, [userId, dispatch, currentUser.id]);
 
   if (!user) {
     return null;
@@ -56,7 +57,7 @@ function User() {
         </li>
       </ul>
       <div>
-        {parseInt(userId) !== parseInt(currentUser.id) && !(currentUserFolloweds[userId]) &&
+        {parseInt(userId) !== parseInt(currentUser?.id) && !(currentUserFolloweds[userId]) &&
           <button className='profile-follow-button' onClick={handleFollow}>Follow</button>}
         {parseInt(userId) !== parseInt(currentUser.id) && currentUserFolloweds[userId] &&
           <button className='profile-follow-button' onClick={handleUnfollow}>Unfollow</button>}
