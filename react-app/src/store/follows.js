@@ -18,7 +18,7 @@ const unfollow = (unfollowedUser) => ({
 })
 
 export const getUserFollowedsThunk = (userId) => async (dispatch) => {
-    const response = await fetch(`api/follows/${userId}/followeds`)
+    const response = await fetch(`/api/follows/${userId}/followeds`)
 
     if (response.ok) {
         const followeds = await response.json()
@@ -58,7 +58,7 @@ export default function followsReducer(state = initialState, action) {
         case GET_USER_FOLLOWEDS:
             newState = { ...state }
             // newState.userFolloweds.forEach(followed => delete newState[followed.id])
-            newState.userFolloweds = [...action.userFolloweds.followeds]
+            newState.userFolloweds = [...action.followeds.followeds]
             newState.userFolloweds.forEach(followed => newState[followed.id] = followed)
             return newState
         case FOLLOW:
