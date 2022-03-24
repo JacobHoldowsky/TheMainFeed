@@ -63,13 +63,13 @@ export default function followsReducer(state = initialState, action) {
             return newState
         case FOLLOW:
             newState = { ...state }
-            newState.userFolloweds.forEach(followed => delete newState[followed.id])
+            // newState.userFolloweds.forEach(followed => delete newState[followed.id])
             newState.userFolloweds = [...newState.userFolloweds, action.followedUser]
             newState.userFolloweds.forEach(followed => newState[followed.id] = followed)
             return newState
         case UNFOLLOW:
             newState = { ...state }
-            delete newState[action.user.id]
+            delete newState[action.unfollowedUser.id]
             return newState
         default:
             return state

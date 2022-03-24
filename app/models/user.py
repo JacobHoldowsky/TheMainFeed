@@ -53,8 +53,8 @@ class User(db.Model, UserMixin):
             self.followed.append(user)
             
     def unfollow(self, user):
-        if self.is_following(self, user):
-            self.followed.remove(user)
+        print('PLANNING TO UNFOLLOW U')
+        self.followed.remove(user)
     
     def is_following(self, user):
         return self.followed.filter(follow.c.follower_id == user.id).count() > 0

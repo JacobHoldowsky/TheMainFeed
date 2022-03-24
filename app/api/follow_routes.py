@@ -31,6 +31,7 @@ def follow(user_id):
 @follow_routes.route('/<int:user_id>/unfollow', methods=['POST'])
 @login_required
 def unfollow(user_id):
+    print('made it in!!!!!!!!!!!!!!!')
     user = User.query.get(user_id)
     current_user.unfollow(user)
     db.session.commit()
