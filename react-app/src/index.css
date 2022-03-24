@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 1vh
 }
 
 .main-feed-h1{  
@@ -10,6 +11,22 @@
 }
 
 .main-feed-h2{
+    margin: 0px;
+    margin-bottom: 5vh;
+}
+
+.login-greeting{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1vh
+}
+
+.login-h1{  
+    margin: 0px;
+}
+
+.login-h2{
     margin: 0px;
     margin-bottom: 5vh;
 }
