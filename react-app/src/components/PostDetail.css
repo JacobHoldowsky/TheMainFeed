@@ -1,9 +1,9 @@
-.post-detail-img{
-    height: 65vh;
+.post-detail-img {
+    height: 50vh;
     border-radius: 20px;
 }
 
-.post-detail-edit-delete{
+.post-detail-edit-delete {
     display: flex;
     gap: 20vw;
 }
@@ -22,7 +22,7 @@
 /* .post-detail-username{
     margin: 0px;
 } */
-#post-detail-username{
+#post-detail-username {
     text-decoration: none;
 }
 
@@ -55,4 +55,41 @@ a:hover {
 
 a:active {
     text-decoration: none;
+}
+
+.comments-container {
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50vw;
+    padding: 5px; */
+    border-radius: 5px;
+    border: 1px solid black;
+    min-height: 0vh;
+    height: 25vh;
+    width: 50vw;
+    overflow-y: scroll;
+}
+
+.comment-container {
+    display: flex;
+    flex-direction: column;
+    /* gap: 10px; */
+    border-bottom: 1px black solid;
+    border-top: 1px black solid;
+    border-left: 1px black solid;
+    padding: 15px;
+    gap: 10px;
+}
+
+.comment-edit-delete-container {
+    display: flex;
+    gap: 15px;
+}
+
+.bigger-comments-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
