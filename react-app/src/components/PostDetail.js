@@ -6,6 +6,7 @@ import { deleteCommentThunk, getPostCommentsThunk } from "../store/comments";
 import { getFollowedPostsThunk } from "../store/posts";
 import EditCommentModal from "./EditCommentModal/EditCommentModal";
 import NewCommentForm from "./NewCommentForm";
+import './PostDetail.css'
 
 function PostDetail() {
     const dispatch = useDispatch()
@@ -38,17 +39,21 @@ function PostDetail() {
     // }
 
     return (
-        <div>
+        <div className='post-detail-container'>
             <NavLink to={`/users/${post.user_id}`}>
-                <div>{post.username}</div>
+                <h2 id='post-detail-username' className='post-detail-username'>{post.username}</h2>
             </NavLink>
-            <img src={post.img_src} alt="Post Detail" />
+            <img className='post-detail-img' src={post.img_src} alt="Post Detail" />
             <p>{post.text_content}</p>
             {
                 post.user_id === currentUser.id &&
-                <div>
-                    <NavLink to={`/posts/${post.id}/delete`}><button>Delete</button></NavLink>
-                    <NavLink to={`/posts/${post.id}/edit`}><button>Edit</button></NavLink>
+                <div className='post-detail-edit-delete'>
+                    <div>
+                        <NavLink to={`/posts/${post.id}/delete`}><button>Delete</button></NavLink>
+                    </div>
+                    <div>
+                        <NavLink to={`/posts/${post.id}/edit`}><button>Edit</button></NavLink>
+                    </div>
                 </div>
             }
             <ul>
