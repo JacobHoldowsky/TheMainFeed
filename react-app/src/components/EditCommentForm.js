@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getPostCommentsThunk, updateCommentThunk } from "../store/comments";
-// import './editCommentForm.css'
+import './EditCommentForm.css'
 
 export default function UpdateCommentForm({ commentInfo, setShowModal }) {
     const dispatch = useDispatch();
@@ -23,8 +23,9 @@ export default function UpdateCommentForm({ commentInfo, setShowModal }) {
 
 
     return (
-        <div className="createNewCommentDiv">
-            <form className="createNewCommentForm" onSubmit={handleCommentEdit}>
+        <div className="edit-comment-container">
+            <h2 className='edit-comment-header'>Edit Comment</h2>
+            <form className="edit-comment-form" onSubmit={handleCommentEdit}>
                 <label htmlFor="commentLabel"></label>
                 <textarea
                     type="text"
@@ -33,7 +34,7 @@ export default function UpdateCommentForm({ commentInfo, setShowModal }) {
                     onChange={handleNewComment}
                     required={true}
                 />
-                <button className="updateCommentFormButton" type="submit">Update</button>
+                <button className="edit-comment-btn" type="submit">Update</button>
             </form>
         </div>
     );

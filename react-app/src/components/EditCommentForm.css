@@ -1,0 +1,21 @@
+.edit-comment-header{
+    margin: 0px;
+}
+
+.edit-comment-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.edit-comment-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5vh;
+}
+
+.edit-comment-btn{
+    width: 5vw;
+}

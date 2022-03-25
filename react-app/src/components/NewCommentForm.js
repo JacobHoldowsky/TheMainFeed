@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { useDispatch } from "react-redux"
 import { useParams } from 'react-router-dom'
 import { getPostCommentsThunk, newCommentThunk } from "../store/comments"
+import './NewCommentForm.css'
 
 const NewCommentForm = () => {
     const dispatch = useDispatch()
@@ -32,15 +33,15 @@ const NewCommentForm = () => {
 
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div >
+            <form className='post-comment-container' onSubmit={handleSubmit}>
                 <div className='commentErrors'>
                     {errors.map((error, i) => (
                         <div key={i}>{error}</div>
                     ))}
                 </div>
                 <div>Post a comment!</div>
-                <div>
+                <div className='comment-textarea'>
                     <textarea
                         type='textarea'
                         className='comment-content-field'

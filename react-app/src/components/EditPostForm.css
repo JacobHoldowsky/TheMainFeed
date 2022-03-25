@@ -1,0 +1,35 @@
+.edit-post-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 30vh;
+    width: 100vw;
+}
+
+.edit-post-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 3vh;
+    width: 150px;
+    height: 80px;
+    border: black 2px solid;
+    border-radius: 10px;
+
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.edit-post-buttons{
+    display: flex;
+    gap: 37px;
+}
