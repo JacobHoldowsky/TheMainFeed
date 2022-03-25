@@ -71,7 +71,7 @@ a:active {
     height: 250px;
     width: 50vw;
     overflow-y: scroll;
-    overflow-wrap: break-word;
+    overflow-wrap : break-word;
 
 }
 

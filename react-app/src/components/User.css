@@ -7,8 +7,8 @@
 }
 
 .profile-img {
-    width: 25vw;
-    height: 35vh;
+    width: 100%;
+    height:25vh;
     border-radius: 15px;
 }
 
