@@ -34,7 +34,7 @@ export const getFollowedPostsThunk = () => async (dispatch) => {
 
     if (response.ok) {
         const followedPosts = await response.json();
-        dispatch(getFollowedPosts(followedPosts))
+        await dispatch(getFollowedPosts(followedPosts))
     }
 }
 

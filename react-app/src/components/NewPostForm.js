@@ -19,11 +19,11 @@ const NewPostForm = () => {
             text_content
         }
 
-        if (!(img_src.includes('image') && img_src.includes('https://')) && !(img_src.includes('data:image'))) {
+        if (!(img_src.includes('https://')) && !(img_src.includes('data:image'))) {
             setErrors(['Please insert a valid image address.'])
         }
 
-        if ((img_src.includes('image') && img_src.includes('https://')) || (img_src.includes('data:image'))) {
+        if ((img_src.includes('https://')) || (img_src.includes('data:image'))) {
             const data = await dispatch(newPostThunk(post))
 
             if (data) {
