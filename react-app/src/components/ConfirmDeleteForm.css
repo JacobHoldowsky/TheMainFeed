@@ -1,0 +1,21 @@
+.confirm-delete-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
+
+.confirm-delete-form {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    gap: 50px;
+    padding: 20px;
+    border-radius: 10px;
+
+}
+
+.confirm-delete-buttons {
+    display: flex;
+    justify-content: space-around;
+}

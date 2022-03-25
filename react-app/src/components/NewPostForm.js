@@ -13,24 +13,28 @@ const NewPostForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        // const formData = new FormData()
 
         const post = {
             img_src,
             text_content
         }
 
-        const data = await dispatch(newPostThunk(post))
-
-        if (data) {
-            await dispatch(getFollowedPostsThunk())
-            
-        } else {
-            const data = await post.json()
-            setErrors([data.errors])
+        if (!(img_src.includes('image') && img_src.includes('https://')) && !(img_src.includes('data:image'))) {
+            setErrors(['Please insert a valid image address.'])
         }
 
-        history.push(`/posts/${data.createdPost.id}`)
+        if ((img_src.includes('image') && img_src.includes('https://')) || (img_src.includes('data:image'))) {
+            const data = await dispatch(newPostThunk(post))
+
+            if (data) {
+                await dispatch(getFollowedPostsThunk())
+
+            } else {
+                const data = await post.json()
+                setErrors([data.errors])
+            }
+            history.push(`/posts/${data.createdPost.id}`)
+        }
 
     }
 
