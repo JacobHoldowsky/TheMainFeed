@@ -14,3 +14,16 @@
 .login-h1, .signup-h1, .main-feed-h1{  
     margin: 0px;
 }
+
+button{
+    background-color: whitesmoke;
+    color: black;
+    border: black 2px solid;
+    border-radius: 5px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif
+}
+
+button:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}

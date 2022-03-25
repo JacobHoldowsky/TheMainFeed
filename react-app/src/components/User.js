@@ -3,6 +3,7 @@ import { useParams, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserPostsThunk } from '../store/posts';
 import { followThunk, getUserFollowedsThunk, unfollowThunk } from '../store/follows';
+import './User.css'
 
 function User() {
   const [user, setUser] = useState({});
@@ -11,6 +12,7 @@ function User() {
   const { userId } = useParams();
   const dispatch = useDispatch()
   const userPosts = useSelector(state => state.posts.userPosts)
+
   const currentUser = useSelector(state => state.session.user)
   const currentUserFolloweds = useSelector(state => state.follows)
 
@@ -26,7 +28,21 @@ function User() {
       const user = await response.json();
       setUser(user);
     })();
-    
+
+    (async () => {
+      const response = await fetch(`/api/follows/${userId}/followeds`)
+      const followeds = await response.json()
+      console.log('FOLLOWEDS', followeds)
+      setFolloweds(followeds.followeds.length);
+    })();
+
+    (async () => {
+      const response = await fetch(`/api/follows/${userId}/followers`)
+      const followers = await response.json()
+      console.log('FOLLOWERS', followers)
+      setFollowers(followers.followers.length);
+    })();
+
   }, [userId, dispatch, currentUser.id]);
 
   if (!user) {
@@ -34,43 +50,49 @@ function User() {
   }
 
   const handleFollow = async (e) => {
-    dispatch(followThunk(userId))
+    await dispatch(followThunk(userId))
     setFollowers(() => followers + 1)
   }
 
   const handleUnfollow = async (e) => {
-    dispatch(unfollowThunk(userId))
+    await dispatch(unfollowThunk(userId))
     setFollowers(() => followers - 1)
   }
 
   return (
-    <div>
-      <ul>
-        <li>
-          <strong>User Id</strong> {userId}
-        </li>
-        <li>
-          <strong>Username</strong> {user.username}
-        </li>
-        <li>
-          <strong>Email</strong> {user.email}
-        </li>
-      </ul>
-      <div>
+    <div >
+      <div className='user-container'>
+        <h1>{user.username}</h1>
+        <ul className='user-info'>
+          <li>
+            <strong>Posts</strong> {userPosts.length}
+          </li>
+          <li>
+            <strong>Followers</strong> {followers}
+          </li>
+          <li>
+            <strong>Following</strong> {followeds}
+          </li>
+        </ul>
+      </div>
+      <div className='follow-btn'>
         {parseInt(userId) !== parseInt(currentUser?.id) && !(currentUserFolloweds[userId]) &&
           <button className='profile-follow-button' onClick={handleFollow}>Follow</button>}
         {parseInt(userId) !== parseInt(currentUser.id) && currentUserFolloweds[userId] &&
           <button className='profile-follow-button' onClick={handleUnfollow}>Unfollow</button>}
       </div>
-      {userPosts.map(post => (
-        <div key={post.id}>
-          <NavLink to={`/posts/${post.id}`}>
-            <img src={post.img_src} alt="Broken Tag" />
-          </NavLink>
-        </div>
-      ))}
-    </div>
-    
+      <div className='images-container'>
+        {userPosts.map(post => (
+          <div key={post.id}>
+            <NavLink to={`/posts/${post.id}`}>
+              <img className='profile-img' src={post.img_src} alt="Broken Tag" />
+            </NavLink>
+          </div>
+        ))}
+      </div>
+
+    </div >
+
   );
 }
 export default User;
