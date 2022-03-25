@@ -31,7 +31,11 @@ const EditPostForm = () => {
             setErrors(['Please insert a valid image address.'])
         }
 
-        if ((img_src.includes('https://')) || (img_src.includes('data:image'))) {
+        if (text_content.length > 100) {
+            setErrors(['Caption may not exceed 100 characters.'])
+        }
+
+        if (((img_src.includes('https://')) || (img_src.includes('data:image'))) && text_content.length <= 100) {
             const data = await dispatch(updatePostThunk(post, postId))
 
             if (data) {
