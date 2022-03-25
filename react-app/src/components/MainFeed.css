@@ -1,6 +1,9 @@
 .main-feed-posts-container{
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
     align-items: center;
 }
 
@@ -8,7 +11,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 50px;
+    margin-bottom: 0px;
     gap: 2vh;
 }
 
@@ -25,8 +28,11 @@
 }
 
 .main-feed-post-img{
-    width: 50vw;
-    height: 45vh;
+    /* width: 100%; */
+    /* max-width: 45vw; */
+    height: 50vh;
+    /* max-height: 10vh; */
+    max-height: fit-content;
     border-radius: 25px;
 }
 
