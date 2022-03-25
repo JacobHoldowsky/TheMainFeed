@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getFollowedPostsThunk, getUserPostsThunk, updatePostThunk } from "../store/posts"
+import { getFollowedPostsThunk, updatePostThunk } from "../store/posts"
 import { useHistory, useParams } from 'react-router-dom'
 import './EditPostForm.css'
 
@@ -11,8 +11,8 @@ const EditPostForm = () => {
     const [errors, setErrors] = useState([])
     const { postId } = useParams()
     const post = useSelector(state => state.posts[postId])
-    const [img_src, setImgSrc] = useState(post.img_src)
-    const [text_content, setTextContent] = useState(post.text_content)
+    const [img_src, setImgSrc] = useState(post?.img_src)
+    const [text_content, setTextContent] = useState(post?.text_content)
 
     useEffect(() => {
         dispatch(getFollowedPostsThunk())
@@ -65,7 +65,7 @@ const EditPostForm = () => {
                             name='img_src'
                             onChange={(e) => setImgSrc(e.target.value)}
                             value={img_src}
-                            placeholder={post.img_src}
+                            placeholder={post?.img_src}
                             required={true}
                         ></input>
                     </div>
@@ -76,7 +76,7 @@ const EditPostForm = () => {
                             className='text-content-field'
                             onChange={(e) => setTextContent(e.target.value)}
                             value={text_content}
-                            placeholder={post.text_content}
+                            placeholder={post?.text_content}
                         ></input>
                     </div>
                     <div className='edit-post-buttons'>

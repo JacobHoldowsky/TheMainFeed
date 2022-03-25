@@ -17,17 +17,24 @@ const NewCommentForm = () => {
             comment_content
         }
 
-        const data = await dispatch(newCommentThunk(newComment, postId))
-
-        if (data) {
-            await dispatch(getPostCommentsThunk(postId))
-
-        } else {
-            const data = await newComment.json()
-            setErrors([data.errors])
+        if (comment_content.length >= 255) {
+            setErrors(['Comment must be less than 255 characters.'])
         }
 
-        setCommentContent('')
+        if (comment_content.length < 255) {
+            const data = await dispatch(newCommentThunk(newComment, postId))
+    
+            if (data) {
+                await dispatch(getPostCommentsThunk(postId))
+    
+            } else {
+                const data = await newComment.json()
+                setErrors([data.errors])
+            }
+    
+            setCommentContent('')
+        }
+
 
     }
 

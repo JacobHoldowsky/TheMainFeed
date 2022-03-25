@@ -66,10 +66,12 @@ a:active {
     padding: 5px; */
     border-radius: 5px;
     border: 1px solid black;
-    min-height: 0vh;
+    min-height: 0;
     height: 250px;
     width: 50vw;
     overflow-y: scroll;
+    overflow-wrap: break-word;
+
 }
 
 .comment-container {
@@ -81,6 +83,7 @@ a:active {
     border-left: 1px black solid;
     padding: 15px;
     gap: 10px;
+
 }
 
 .comment-edit-delete-container {
@@ -88,7 +91,7 @@ a:active {
     gap: 15px;
 }
 
-.bigger-comments-container{
+.bigger-comments-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
