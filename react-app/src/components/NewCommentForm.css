@@ -1,4 +1,4 @@
-.post-comment-container{
+.post-comment-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -6,7 +6,7 @@
     margin-top: 3vh;
 }
 
-textarea{
+textarea {
     resize: none;
     height: 10vh;
     width: 15vw;
