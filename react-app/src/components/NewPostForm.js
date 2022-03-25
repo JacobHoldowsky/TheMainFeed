@@ -21,7 +21,7 @@ const NewPostForm = () => {
         }
 
         const data = await dispatch(newPostThunk(post))
-        console.log('data',data)
+
         if (data) {
             await dispatch(getFollowedPostsThunk())
             

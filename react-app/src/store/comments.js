@@ -39,7 +39,7 @@ export const newCommentThunk = (newComment, postId) => async (dispatch) => {
         body: JSON.stringify(newComment)
     })
 
-    console.log(response)
+
 
     if (response.ok) {
         const createdComment = await response.json()
@@ -49,7 +49,7 @@ export const newCommentThunk = (newComment, postId) => async (dispatch) => {
 }
 
 export const updateCommentThunk = (updatedComment, commentId) => async (dispatch) => {
-    console.log('COMMENTID',commentId)
+
     const response = await fetch(`/api/comments/${commentId}/edit`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

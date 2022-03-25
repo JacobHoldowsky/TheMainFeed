@@ -17,7 +17,7 @@ const NewCommentForm = () => {
         }
 
         const data = await dispatch(newCommentThunk(newComment, postId))
-        console.log('data', data)
+
         if (data) {
             await dispatch(getPostCommentsThunk(postId))
 

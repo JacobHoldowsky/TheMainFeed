@@ -34,10 +34,10 @@ function PostDetail() {
     const handleDeleteComment = async (commentId) => {
         await dispatch(deleteCommentThunk(commentId))
         await dispatch(getPostCommentsThunk(postId))
-    }  
+    }
 
     // const handleEditComment = async (commentId) => {
-        
+
     // }
 
     return (
@@ -58,25 +58,37 @@ function PostDetail() {
                     </div>
                 </div>
             }
-            <ul>
-                {comments?.map(comment => (
-                    <div key={comment.id} className="comment">
-                        <ul>   
-                            <li className="commenter-username">{comment.username}</li>
-                            <li className='comment-content'>{comment.comment_content}</li>
-                        </ul>
-                        {
-                            comment.user_id === currentUser.id &&
-                            <div>
-                                <button onClick={() => handleDeleteComment(comment.id)}>Delete</button>
-                                <EditCommentModal comment={comment} />
+            <div className='bigger-comments-container'>
+                <h2>Comments</h2>
+                <div className='comments-container'>
+                    {comments?.map(comment => (
+                        <div key={comment.id} className="comment-container">
+                            <div className='comment-info'>
+                                <NavLink to={`/users/${post?.user_id}`} className="commenter-username">{comment.username}</NavLink>
                             </div>
-                        }
-                    </div>
-                ))}
-            </ul>
-            <NewCommentForm />
-        </div>
+                            <div>
+                                <div className='comment-content'>{comment.comment_content}</div>
+                            </div>
+                            {
+                                comment.user_id === currentUser.id &&
+                                <div className='comment-edit-delete-container'>
+                                    <div>
+                                        <button onClick={() => handleDeleteComment(comment.id)}>Delete</button>
+                                    </div>
+                                    <div>
+                                        <EditCommentModal comment={comment} />
+                                    </div>
+                                </div>
+
+
+                            }
+                        </div>
+                    ))}
+                </div>
+                <NewCommentForm />
+            </div>
+            </div>
+            
     )
 
 }

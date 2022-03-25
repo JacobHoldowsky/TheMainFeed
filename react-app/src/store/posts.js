@@ -54,7 +54,7 @@ export const newPostThunk = (newPost) => async (dispatch) => {
         body: JSON.stringify(newPost)
     })
 
-    console.log(response)
+
 
     if (response.ok) {
         const createdPost = await response.json()

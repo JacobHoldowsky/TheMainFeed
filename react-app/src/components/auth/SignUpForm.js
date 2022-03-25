@@ -66,7 +66,7 @@ const SignUpForm = () => {
       setErrors(['Please enter a valid email.'])
     }
 
-    console.log(errors)
+
 
     if (password === repeatPassword &&
       password.length >= 4 &&

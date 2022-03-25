@@ -7,7 +7,6 @@ import './MainFeed.css';
 const MainFeed = () => {
     const dispatch = useDispatch()
     const followedPosts = useSelector(state => state.posts.posts)
-    console.log(followedPosts)
 
     useEffect(() => {
         dispatch(getFollowedPostsThunk())

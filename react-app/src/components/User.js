@@ -13,7 +13,7 @@ function User() {
   const userPosts = useSelector(state => state.posts.userPosts)
   const currentUser = useSelector(state => state.session.user)
   const currentUserFolloweds = useSelector(state => state.follows)
-  console.log('FOLLOWEDS', currentUserFolloweds)
+
 
   useEffect(() => {
     dispatch(getUserPostsThunk(userId))

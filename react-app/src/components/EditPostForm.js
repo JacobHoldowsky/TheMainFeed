@@ -16,8 +16,6 @@ const EditPostForm = () => {
         dispatch(getFollowedPostsThunk())
     }, [dispatch]);
     
-    console.log('post', post)
-    
     const handleSubmit = async (e) => {
         e.preventDefault()
         // const formData = new FormData()
