@@ -23,6 +23,10 @@ const SignUpForm = () => {
       setErrors(['Password must be at least 4 characters.'])
     }
 
+    if (!(profilePicSrc.includes('https://')) && !(profilePicSrc.includes('data:image'))) {
+      setErrors(['Please insert a valid image address.'])
+    }
+
     if (password.length >= 4 && password !== repeatPassword) {
       setErrors(['Passwords must match.'])
     }
@@ -81,7 +85,8 @@ const SignUpForm = () => {
       email.indexOf('@') < email.indexOf('.') &&
       email[email.indexOf('@') + 1] &&
       firstName.length > 1 &&
-      lastName.length > 1) {
+      lastName.length > 1 &&
+      ((profilePicSrc.includes('https://')) && (profilePicSrc.includes('data:image')))) {
       const data = await dispatch(signUp(username, firstName, lastName, email, password, profilePicSrc));
       if (data) {
         setErrors(data)

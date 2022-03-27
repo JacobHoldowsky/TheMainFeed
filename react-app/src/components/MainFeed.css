@@ -36,7 +36,15 @@
 }
 
 .post-caption{
+    display: flex;
+    justify-content: center;
     max-width: 250px;
     font-size:large;
-    overflow:hidden
+    overflow:hidden;
+    text-align: center;
+}
+
+.post-cap-container {
+    display: flex;
+    justify-content: center;
 }
