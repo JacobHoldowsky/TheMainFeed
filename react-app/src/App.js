@@ -68,7 +68,7 @@ function App() {
         <ProtectedRoute path='/' exact={true} >
           <div className='main-feed-greeting'>
             <h1 className='main-feed-h1'>The Main Feed</h1>
-            <h2 className='main-feed-h2'>The place to be connected</h2>
+            <h2 className='main-feed-h2'>The place to connect with what you love</h2>
             <div className='external-links'>
               <a
                 class='social-icon-link github'
