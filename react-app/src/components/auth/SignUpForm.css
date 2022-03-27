@@ -3,9 +3,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 55vh;
+    height: 70vh;
     width: 100vw;
 }
+
+
 
 .signup-form {
     display: flex;
