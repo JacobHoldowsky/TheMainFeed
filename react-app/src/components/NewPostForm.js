@@ -9,6 +9,7 @@ const NewPostForm = () => {
     const history = useHistory()
     const [errors, setErrors] = useState([])
     const [img_src, setImgSrc] = useState('')
+    const [submitted, setSubmitted] = useState(false)
     const [text_content, setTextContent] = useState('')
 
     const handleSubmit = async (e) => {
@@ -27,7 +28,8 @@ const NewPostForm = () => {
             setErrors(['Caption may not exceed 100 characters.'])
         }
 
-        if (((img_src.includes('https://')) || (img_src.includes('data:image'))) && text_content.length <= 100) {
+        if (((img_src.includes('https://')) || (img_src.includes('data:image'))) && text_content.length <= 100 && !submitted) {
+            setSubmitted(true)
             const data = await dispatch(newPostThunk(post))
 
             if (data) {
@@ -39,6 +41,7 @@ const NewPostForm = () => {
             }
             history.push(`/posts/${data.createdPost.id}`)
         }
+
 
     }
 

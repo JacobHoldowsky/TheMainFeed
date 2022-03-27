@@ -24,7 +24,9 @@ const MainFeed = () => {
                     <NavLink to={`/posts/${post.id}`}>
                         <img className='main-feed-post-img' src={post.img_src} alt="post" />
                     </NavLink>
-                    <p className='post-caption'>{post.text_content}</p>
+                    <div className='post-cap-container'>
+                        <p className='post-caption'>{post.text_content}</p>
+                    </div>
                 </div>
             ))}
         </div>
