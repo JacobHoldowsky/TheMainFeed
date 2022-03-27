@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, NavLink, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
@@ -69,6 +69,26 @@ function App() {
           <div className='main-feed-greeting'>
             <h1 className='main-feed-h1'>The Main Feed</h1>
             <h2 className='main-feed-h2'>The place to be connected</h2>
+            <div className='external-links'>
+              <a
+                class='social-icon-link github'
+                href="https://github.com/JacobHoldowsky"
+                target='_blank'
+                rel="noopener"
+                aria-label='Github'
+              >Github
+                <i class='fab fa-github' />
+              </a>
+              <a
+                class='social-icon-link linkedIn'
+                href="https://www.linkedin.com/in/jacob-holdowsky-2b0baa103/"
+                target='_blank'
+                rel="noopener"
+                aria-label='Github'
+              >LinkedIn
+                <i class='fab fa-linkedin' />
+              </a>
+            </div>
           </div>
           <MainFeed />
         </ProtectedRoute>
