@@ -20,19 +20,20 @@ Redux - Most state items were handled by redux, which helped keep all state nece
 # Screenshots of the The Main Feed
 
 ## Main Feed
-![Screen Shot 2022-03-27 at 11 53 22 AM](https://user-images.githubusercontent.com/52753308/160289767-21cbc0bd-477c-4880-b88a-e87c5d5e95b8.png)
 
-![Screen Shot 2022-03-27 at 11 54 09 AM](https://user-images.githubusercontent.com/52753308/160289804-bd98dfd1-f173-4965-a6fc-543a28d1de36.png)
+## ![Screen Shot 2022-03-27 at 11 53 22 AM](https://user-images.githubusercontent.com/52753308/160289767-21cbc0bd-477c-4880-b88a-e87c5d5e95b8.png)
+
+## ![Screen Shot 2022-03-27 at 11 54 09 AM](https://user-images.githubusercontent.com/52753308/160289804-bd98dfd1-f173-4965-a6fc-543a28d1de36.png)
 
 ## Post Detail
 
-![Screen Shot 2022-03-27 at 11 54 42 AM](https://user-images.githubusercontent.com/52753308/160289818-5f1103ba-9a63-4bae-b994-6e510625f9b1.png)
+## ![Screen Shot 2022-03-27 at 11 54 42 AM](https://user-images.githubusercontent.com/52753308/160289818-5f1103ba-9a63-4bae-b994-6e510625f9b1.png)
 
-![Screen Shot 2022-03-27 at 11 57 49 AM](https://user-images.githubusercontent.com/52753308/160289963-ea32ba4b-bede-46c0-ac24-a445cf7894d4.png)
+## ![Screen Shot 2022-03-27 at 11 57 49 AM](https://user-images.githubusercontent.com/52753308/160289963-ea32ba4b-bede-46c0-ac24-a445cf7894d4.png)
 
 ## User Profile
 
-<img width="1440" alt="Screen Shot 2022-03-27 at 11 59 01 AM" src="https://user-images.githubusercontent.com/52753308/160290034-206df406-f020-49d8-bdbb-40091da36532.png">
+## <img width="1440" alt="Screen Shot 2022-03-27 at 11 59 01 AM" src="https://user-images.githubusercontent.com/52753308/160290034-206df406-f020-49d8-bdbb-40091da36532.png">
 
 # Developer's thoughts moving forward
 
