@@ -27,13 +27,13 @@ Redux - Most state items were handled by redux, which helped keep all state nece
 
 ## Post Detail
 
-## ![Screen Shot 2022-03-27 at 11 54 42 AM](https://user-images.githubusercontent.com/52753308/160289818-5f1103ba-9a63-4bae-b994-6e510625f9b1.png)
+## ![Screen Shot 2022-03-28 at 10 22 33 AM](https://user-images.githubusercontent.com/52753308/160419246-9f71085e-cb01-4d6e-8f78-5008c87cb5a4.png)
 
-## ![Screen Shot 2022-03-27 at 11 57 49 AM](https://user-images.githubusercontent.com/52753308/160289963-ea32ba4b-bede-46c0-ac24-a445cf7894d4.png)
+## ![Screen Shot 2022-03-28 at 10 22 54 AM](https://user-images.githubusercontent.com/52753308/160419316-17dbf729-0dd1-48a7-8a99-b65378f4723e.png)
 
 ## User Profile
 
-## <img width="1440" alt="Screen Shot 2022-03-27 at 11 59 01 AM" src="https://user-images.githubusercontent.com/52753308/160290034-206df406-f020-49d8-bdbb-40091da36532.png">
+## ![Screen Shot 2022-03-28 at 10 23 21 AM](https://user-images.githubusercontent.com/52753308/160419409-d2680d60-f54a-4e74-b061-e7f485cca284.png)
 
 # Developer's thoughts moving forward
 
