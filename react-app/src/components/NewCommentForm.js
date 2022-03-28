@@ -47,7 +47,7 @@ const NewCommentForm = () => {
                         <div key={i}>{error}</div>
                     ))}
                 </div>
-                <div>Post a comment!</div>
+                <div className='comment-box-header'>Post a comment!</div>
                 <div className='comment-textarea'>
                     <textarea
                         type='textarea'
