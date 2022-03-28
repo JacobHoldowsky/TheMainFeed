@@ -2,6 +2,10 @@
 
 The Main Feed is the main place to immerse oneself in the worlds the athletes they love. Replete with images in a collage-like style of each athlete, one can follow all the athletes he/she loves and scroll on their main feed from one exciting view to the next. Users will love adding pictures and seeing the page change form to bring the new image in the mix. All images remain a model of their original size, but remain centered in each row with the other pictures for a sweet, eye-candy experience. 
 
+# Live Link
+
+https://the-main-feed.herokuapp.com/
+
 # Overview of technologies used
 
 The Main Feed is a blogging website built with Flask, SQLAlchemy, PostgresSQL, React and Redux.
