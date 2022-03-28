@@ -25,6 +25,8 @@
 #post-detail-username {
     /* text-decoration: none; */
     font-size: xx-large;
+    font-family: fantasy;
+    font-weight: bolder;
     /* margin-top: 180px; */
 }
 
@@ -32,7 +34,7 @@
     /* text-decoration: none; */
     color: black;
     font-size: larger;
-    font-family: cursive;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .post-detail-username:hover {

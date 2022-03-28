@@ -60,7 +60,7 @@ function User() {
   return (
     <div >
       <div className='user-container'>
-        <h1>{user.username}</h1>
+        <h1 id='profile-username'>{user.username}</h1>
         <ul className='user-info'>
           <li>
             <strong>Posts</strong> {userPosts.length}
