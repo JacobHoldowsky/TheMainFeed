@@ -86,7 +86,7 @@ const SignUpForm = () => {
       email[email.indexOf('@') + 1] &&
       firstName.length > 1 &&
       lastName.length > 1 &&
-      ((profilePicSrc.includes('https://')) && (profilePicSrc.includes('data:image')))) {
+      ((profilePicSrc.includes('https://')) || (profilePicSrc.includes('http://')) || (profilePicSrc.includes('data:image')))) {
       const data = await dispatch(signUp(username, firstName, lastName, email, password, profilePicSrc));
       if (data) {
         setErrors(data)
