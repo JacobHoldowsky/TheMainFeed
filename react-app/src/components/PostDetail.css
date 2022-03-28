@@ -40,6 +40,11 @@
     /* border-bottom: 1px solid black; */
 }
 
+.post-detail-cap{
+    font-family: monospace;
+    font-size: x-large;
+}
+
 a:link {
     text-decoration: none;
 }

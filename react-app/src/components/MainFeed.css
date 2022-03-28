@@ -42,6 +42,7 @@
     font-size:large;
     overflow:hidden;
     text-align: center;
+    font-family:monospace;
 }
 
 .post-cap-container {

@@ -46,7 +46,7 @@ function PostDetail() {
                 <h2 id='post-detail-username' className='post-detail-username'>{post?.username}</h2>
             </NavLink>
             <img className='post-detail-img' src={post.img_src} alt="Post Detail" />
-            <p>{post?.text_content}</p>
+            <p className='post-detail-cap'>{post?.text_content}</p>
             {
                 post?.user_id === currentUser.id &&
                 <div className='post-detail-edit-delete'>

@@ -11,3 +11,7 @@ textarea {
     height: 10vh;
     width: 15vw;
 }
+
+.comment-box-header{
+    font-family: fantasy;
+}
