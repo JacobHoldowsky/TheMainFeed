@@ -32,14 +32,12 @@ function User() {
     (async () => {
       const response = await fetch(`/api/follows/${userId}/followeds`)
       const followeds = await response.json()
-      console.log('FOLLOWEDS', followeds)
       setFolloweds(followeds.followeds.length);
     })();
 
     (async () => {
       const response = await fetch(`/api/follows/${userId}/followers`)
       const followers = await response.json()
-      console.log('FOLLOWERS', followers)
       setFollowers(followers.followers.length);
     })();
 
