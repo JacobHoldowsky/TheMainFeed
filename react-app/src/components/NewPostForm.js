@@ -20,7 +20,7 @@ const NewPostForm = () => {
             text_content
         }
 
-        if (!(img_src.includes('https://')) && !(img_src.includes('data:image')) && !(img_src.includes('http://'))) {
+        if (!(img_src.includes('jpeg')) && !(img_src.includes('data:image')) && !(img_src.includes('jpg'))) {
             setErrors(['Please insert a valid image address.'])
         }
 
@@ -28,7 +28,7 @@ const NewPostForm = () => {
             setErrors(['Caption may not exceed 100 characters.'])
         }
 
-        if (((img_src.includes('https://')) || (img_src.includes('http://')) || (img_src.includes('data:image'))) && text_content.length <= 100 && !submitted) {
+        if (((img_src.includes('jpeg')) || (img_src.includes('jpg')) || (img_src.includes('data:image'))) && text_content.length <= 100 && !submitted) {
             setSubmitted(true)
             const data = await dispatch(newPostThunk(post))
 
